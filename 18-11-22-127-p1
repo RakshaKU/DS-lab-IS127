@@ -1,0 +1,145 @@
+/Design and implement a stack(Array implementation)and demonstrate its working with the necessary inputs.Display the appropriate message in case of exception/ 
+#include<stdio.h>
+#include<stdlib.h>
+#define SIZE 4
+int top=-1;//initializing top value to -1//
+int arr[SIZE];
+void push();//to insert an element into stack//
+void pop();//to remove an element from the stack//
+void display();//to display the elements of the stack//
+int main()
+{
+ int choice;
+ while(1)
+  {
+   printf("Select the operation on stack\n");
+   printf("1.push\n2.pop\n3.show\n4.Exit\n");
+   scanf("%d",&choice);
+   switch(choice)//switch case to choose between the operations//
+       {
+       case 1:push();
+            break;
+       case 2:pop();
+            break;
+       case 3:display();
+            break;
+       case 4:exit(0);//to exit out of the choices//
+       default : printf("Invalid choice");
+      }
+   }
+}
+void push()//user defined function//
+{
+ int x;
+ if(top==SIZE-1)
+   printf("Overflow\n");//stack is full//
+ else
+ {
+   printf("Enter the element to be inserted\n");
+   scanf("%d",&x);
+   top++;
+   arr[top]=x;
+ }
+}
+
+void pop()//user defined function//
+{
+ if(top==-1)
+  printf("underflow\n");//stack is empty//
+ else
+  {
+  printf("Removed element is %d\n",arr[top]);
+  top--;
+  }
+}
+
+void display()//user defined function//
+{
+ int i;
+ if(top!=-1){
+ for(i=0;i<=top;i++){
+   printf("%d\t",arr[i]);
+}
+ printf("\n");//next line//
+}
+ else
+ {
+  printf("Stack is empty\n");//underflow condition//
+ }
+}
+
+OUTPUT:
+
+Select the operation on stack
+1.push
+2.pop
+3.display
+4.Exit
+1
+Enter the element to be inserted
+6
+Select the operation on stack
+1.push
+2.pop
+3.display
+4.Exit
+1
+Enter the element to be inserted
+7
+Select the operation on stack
+1.push
+2.pop
+3.display
+4.Exit
+1
+Enter the element to be inserted
+8
+Select the operation on stack
+1.push
+2.pop
+3.display
+4.Exit
+1
+Enter the element to be inserted
+6
+Select the operation on stack
+1.push
+2.pop
+3.display
+4.Exit
+1
+Overflow
+
+Select the operation on stack
+1.push
+2.pop
+3.display
+4.Exit
+3
+6    7    8    6    
+Select the operation on stack
+1.push
+2.pop
+3.display
+4.Exit
+2
+Removed element is 6
+Select the operation on stack
+1.push
+2.pop
+3.display
+4.Exit
+2
+Removed element is 8
+Select the operation on stack
+1.push
+2.pop
+3.display
+4.Exit
+3
+6    7    
+Select the operation on stack
+1.push
+2.pop
+3.display
+4.Exit
