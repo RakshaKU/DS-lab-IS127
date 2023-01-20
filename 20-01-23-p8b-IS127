@@ -1,0 +1,101 @@
+// circular queue using linked list
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node          // creating a node
+{
+  int data;
+  struct node * next;
+};
+struct node * front=NULL;
+struct node * rear=NULL;
+
+void enq(int x)          // function to insert element into queue
+{
+   struct node *newnode ;
+   newnode=(struct node*)malloc(sizeof(struct node));
+   newnode->data =x;
+   newnode->next=NULL;
+   if(rear == NULL)
+   {
+    front=rear=newnode;
+    rear->next=front;
+   }
+   else
+   {
+     rear->next=newnode;
+     rear=newnode;
+     rear->next=front;
+   }
+}
+
+void deq()   //function to delete the first element of the queue
+{
+  struct node * temp;
+  temp=front;
+  if((front==NULL)&&(rear==NULL))       //checking if queue is empty
+  {
+    printf("queue is empty");
+  }
+  else if (front == rear)
+  {
+     front=rear=NULL;
+     
+     free(temp);
+  }
+  else
+  {
+   front=front->next;
+   rear->next=front;
+   free(temp);
+  }
+}
+
+void dis()  // display function
+{
+ 
+  struct node *temp;
+  temp=front;
+  if(temp==NULL)   //checking if queue is empty
+  {
+    printf("Underflow");
+    return ;
+  }  
+ 
+  else
+  {
+    printf("Printing elements \n");
+    do
+    {
+      printf("%d\n",temp->data);
+      temp=temp->next;
+    }while(temp != front);
+  }
+}
+int main()
+{
+  int choice;
+  int i;
+  while(1)
+  {
+    printf("Select the operation\n");
+    printf("1.Insert\n2.Delete\n3.Display\n4.Exit\n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+      case 1: printf("enter the element ");
+              scanf("%d",&i);
+              enq(i);
+              break;
+      case 2: deq();
+              break;
+      case 3: dis();
+              break;
+      case 4: exit(0);
+      default: printf("Invalid choice");
+              break;
+     }  
+   }
+  return 0;
+ 
+}
