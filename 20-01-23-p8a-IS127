@@ -1,0 +1,102 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define N 10
+
+int f=-1,r=-1,q[N];
+
+void enq()
+{
+  int val;
+  printf("enter the value :");
+  scanf("%d",&val);
+ 
+  if((r+1)%N==f)
+  {
+     printf("overflow");
+     return ;
+  }
+  else if((f==-1)&&(r==-1))
+  {
+    f=0;
+    r=0;
+  }
+  else if ((r==N-1)&&(f!=0))
+  r=0;
+  else
+  r=(r+1)%N;
+ 
+  q[r]=val;
+  printf("value enqueued\n");
+}
+
+
+void deq()
+{
+  int val;
+  if((f==-1)&&(r==-1))
+  {
+     printf("underflow");
+     return;
+  }
+  val=q[f];
+ 
+  if(f==r)
+  {
+    f=-1;
+    r=-1;
+  }
+ 
+  else if(f==N-1)
+  f=0;
+ 
+  else
+  f=f+1;
+ 
+  printf("value= %d dequeued ",val);
+}
+
+void dis()
+{
+  int i=f;
+  if((f==-1)&&(r==-1))
+  {
+    printf("queue is empty");
+    return;
+  }
+  else
+  {
+   printf("elements in a queue are:");
+   do
+   {
+     printf("%d\t",q[i]);
+     i=(i+1)%N;
+   }while(i<=r);
+   
+  }
+}
+
+int main()
+{
+  int choice;
+  int i;
+  while(1)
+  {
+    printf("Select the operation\n");
+    printf("1.Insert\n2.Delete\n3.Display\n4.Exit\n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+      case 1: enq();
+              break;
+      case 2: deq();
+              break;
+      case 3: dis();
+              break;
+      case 4: exit(0);
+      default: printf("Invalid choice");
+              break;
+     }  
+   }
+  return 0;
+ 
+}
